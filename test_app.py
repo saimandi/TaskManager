@@ -1,6 +1,6 @@
 import unittest
 import json
-from task_resource import TaskResource
+from old_task_resource import TaskResource
 from flask import Flask
 
 class TaskManagerTestCase(unittest.TestCase):

@@ -1,5 +1,5 @@
 from flask import Flask
-from task_resource import TaskResource
+from old_task_resource import TaskResource
 
 app = Flask(__name__) # creating Flask instance
 
