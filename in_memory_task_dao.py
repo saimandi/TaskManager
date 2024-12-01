@@ -33,7 +33,6 @@ class InMemoryDAO:
             return task
 
     def delete_task(self, task_id):
-        # Delete a task by its ID
         task = self.get_task(task_id)
         if task:
             self.tasks.remove(task)
