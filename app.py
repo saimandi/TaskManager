@@ -1,5 +1,6 @@
 from flask import Flask
-from old_task_resource import TaskResource
+from task_resource import TaskResource
+from db_task_dao import DBTaskDAO
 
 app = Flask(__name__) # creating Flask instance
 

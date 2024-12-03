@@ -16,9 +16,9 @@ class TaskResource:
         @self.app.route('/tasks', methods=['GET'])
         def get_tasks():
             tasks = self.dao.get_tasks()
-            return (jsonify(tasks), 200
+            return jsonify(tasks), 200
 
-        @self.app.route('/tasks/<int:task_id>', methods=['GET']))  # get specific task
+        @self.app.route('/tasks/<int:task_id>', methods=['GET'])  # get specific task
         def get_task(task_id):
             task = self.dao.get_task(task_id)
             if task:

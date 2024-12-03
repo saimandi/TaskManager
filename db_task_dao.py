@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
+from task_dao import TaskDAO
+
 db = SQLAlchemy()
 
 class Task(db.Model):
@@ -14,11 +16,11 @@ class Task(db.Model):
         return f"<Task id={self.id} title={self.title}>"
 
 
-class DBTaskDAO:
+class DBTaskDAO(TaskDAO):
     def __init__(self, db_instance):
         self.db = db_instance
 
-    def get_all_tasks(self):
+    def get_tasks(self):
         return Task.query.all()
 
     def get_task(self, task_id):

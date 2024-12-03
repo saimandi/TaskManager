@@ -1,4 +1,7 @@
-class InMemoryDAO:
+from task_dao import TaskDAO
+
+
+class InMemoryDAO(TaskDAO):
     def __init__(self):
         self.tasks = []
 
