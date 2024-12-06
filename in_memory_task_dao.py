@@ -1,5 +1,5 @@
 from task_dao import TaskDAO
-
+from task_resource import Task
 
 class InMemoryDAO(TaskDAO):
     def __init__(self):
@@ -12,13 +12,14 @@ class InMemoryDAO(TaskDAO):
         for task in self.tasks:
             if task["id"] == task_id:
                 return task
-    def create_task(self, title, description):
+
+    def create_task(self, task):
         task_id = len(self.tasks) + 1 if self.tasks else 1
         new_task = {
             "id": task_id,
-            "title": title,
-            "description": description,
-            "status": "Pending"
+            "title": task.get("title"),
+            "description": task.get("description", ""),
+            "status": task.get("status", "Pending")
         }
         self.tasks.append(new_task)
         return new_task
