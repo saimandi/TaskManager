@@ -3,9 +3,12 @@ from in_memory_task_dao import InMemoryDAO
 
 class Task:
     def __init__(self, title=None, description=None, status=None):
+        self.id = None
         self.title = title
         self.description = description
         self.status = status
+    def get_id(self):
+        return self.id
     def get_title(self):
         return self.title
     def get_description(self):
@@ -13,7 +16,7 @@ class Task:
     def get_status(self):
         return self.status
     def to_json(self):
-        return {"title": self.title, "description":self.description, "status":self.status}
+        return {"id": self.id, "title": self.title, "description":self.description, "status":self.status}
     @staticmethod
     def from_json(json_task):
         return Task(json_task.get("title"), json_task.get("description"), json_task.get("status"))
@@ -84,6 +87,7 @@ class TaskResource:
                 abort(400, description="Request body must contain JSON data")
 
             partial_task = Task.from_json(data) # create task object populated partially
+            partial_task.id = task_id # set ID of partial task
             updated_task = self.dao.update_task(partial_task) # send partial task data
 
             return jsonify(updated_task.to_json()), 200
