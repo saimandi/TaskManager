@@ -1,7 +1,7 @@
 import unittest
 from flask import Flask
 from in_memory_task_dao import InMemoryDAO
-from db_task_dao import db, DBTaskDAO, Task
+from db_task_dao import db, DBTaskDAO, DBTask
 from task_resource import TaskResource
 from abc import ABC
 
@@ -22,7 +22,7 @@ class TaskManagerBaseTestCase(unittest.TestCase):
                 db.create_all()
             self.dao = self.dao_class(db)
             with self.app.app_context():
-                db.session.query(Task).delete()
+                db.session.query(DBTask).delete()
                 db.session.commit()
         elif self.dao_class == InMemoryDAO:
             self.dao = InMemoryDAO()
